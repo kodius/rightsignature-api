@@ -28,7 +28,7 @@ module RightSignature2013
         @consumer_key,
         @consumer_secret,
         {
-         :site              => "https://RightSignature2013.com",
+         :site              => "https://rightsignature.com",
          :scheme            => :header,
          :http_method        => :post,
          :authorize_path    =>'/oauth/authorize', 

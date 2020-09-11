@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "rightsignature/version"
+require "RightSignature2013/version"
 
 Gem::Specification.new do |s|
-  s.name        = "rightsignature"
-  s.version     = RightSignature::VERSION
+  s.name        = "RightSignature2013"
+  s.version     = RightSignature2013::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Alex Chee", "Geoff Ereth", "Cary Dunn"]
-  s.email       = ["dev@rightsignature.com"]
-  s.homepage    = "http://github.com/rightsignature/rightsignature-api"
-  s.summary     = "API wrapper for RightSignature"
-  s.description = "Provides a wrapper for the RightSignature API."
+  s.email       = ["dev@RightSignature2013.com"]
+  s.homepage    = "http://github.com/RightSignature2013/RightSignature2013-api"
+  s.summary     = "API wrapper for RightSignature2013"
+  s.description = "Provides a wrapper for the RightSignature2013 API."
   s.license     = 'MIT'
 
   s.add_development_dependency "bundler", ">= 1.0.0"

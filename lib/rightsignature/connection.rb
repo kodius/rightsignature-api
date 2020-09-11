@@ -1,14 +1,14 @@
-module RightSignature
+module RightSignature2013
   class Connection
-    include RightSignature::Document
-    include RightSignature::Account
-    include RightSignature::Template
+    include RightSignature2013::Document
+    include RightSignature2013::Account
+    include RightSignature2013::Template
 
     attr_accessor :configuration
     attr_accessor :oauth_connection
     attr_accessor :token_connection
 
-    # Creates new instance of RightSignature::Connection to make API calls
+    # Creates new instance of RightSignature2013::Connection to make API calls
     # * <b>creds</b>: Hash of credentials for API Token or OAuth. If both are specified, it uses API Token
     #   * Hash key for API Token:
     #     * :api_token
@@ -19,23 +19,23 @@ module RightSignature
     #     * :access_secret
     #     
     # Example for Api Token:
-    #   @rs_connection = RightSignature::Connection.new(:api_token => "MYTOKEN")
+    #   @rs_connection = RightSignature2013::Connection.new(:api_token => "MYTOKEN")
     # 
     # Example for OAuth:
-    #   @rs_connection = RightSignature::Connection.new(:consumer_key => "ckey", :consumer_secret => "csecret", :access_token => "atoken", :access_secret => "asecret")
+    #   @rs_connection = RightSignature2013::Connection.new(:consumer_key => "ckey", :consumer_secret => "csecret", :access_token => "atoken", :access_secret => "asecret")
     # 
     def initialize(creds={})
       @configuration = {}
-      RightSignature::Connection.oauth_keys.each do |key|
+      RightSignature2013::Connection.oauth_keys.each do |key|
         @configuration[key] = creds[key].to_s
       end
 
-      RightSignature::Connection.api_token_keys.each do |key|
+      RightSignature2013::Connection.api_token_keys.each do |key|
         @configuration[key] = creds[key].to_s
       end
 
-      @token_connection = RightSignature::TokenConnection.new(*RightSignature::Connection.api_token_keys.map{|k| @configuration[k]})
-      @oauth_connection = RightSignature::OauthConnection.new(@configuration)
+      @token_connection = RightSignature2013::TokenConnection.new(*RightSignature2013::Connection.api_token_keys.map{|k| @configuration[k]})
+      @oauth_connection = RightSignature2013::OauthConnection.new(@configuration)
 
       @configuration
     end
@@ -43,14 +43,14 @@ module RightSignature
     # Checks if credentials are set for either API Token or for OAuth 
     # 
     def check_credentials
-      raise "Please set load_configuration with #{RightSignature::Connection.api_token_keys.join(',')} or #{RightSignature::Connection.oauth_keys.join(',')}" unless has_api_token? || has_oauth_credentials?
+      raise "Please set load_configuration with #{RightSignature2013::Connection.api_token_keys.join(',')} or #{RightSignature2013::Connection.oauth_keys.join(',')}" unless has_api_token? || has_oauth_credentials?
     end
 
     # Checks if API Token credentials are set. Does not validate creds with server.
     # 
     def has_api_token?
       return false if @configuration.nil?
-      RightSignature::Connection.api_token_keys.each do |key|
+      RightSignature2013::Connection.api_token_keys.each do |key|
         return false if @configuration[key].nil? || @configuration[key].match(/^\s*$/)
       end
 
@@ -61,7 +61,7 @@ module RightSignature
     # 
     def has_oauth_credentials?
       return false if @configuration.nil?
-      RightSignature::Connection.oauth_keys.each do |key| 
+      RightSignature2013::Connection.oauth_keys.each do |key| 
         return false if @configuration[key].nil? || @configuration[key].match(/^\s*$/)
       end
 
@@ -81,7 +81,7 @@ module RightSignature
     # :nodoc:
     def site
       if has_api_token?
-        RightSignature::TokenConnection.base_uri
+        RightSignature2013::TokenConnection.base_uri
       else
         @oauth_connection.oauth_consumer.site
       end
@@ -178,7 +178,7 @@ module RightSignature
     end
     
     # Attempts to parse response from a connection and return it as a hash. 
-    # If response isn't a success, an RightSignature::ResponseError is raised
+    # If response isn't a success, an RightSignature2013::ResponseError is raised
     # 
     # Arguments:
     #   url: Path of API call
@@ -190,13 +190,13 @@ module RightSignature
     def parse_response(response)
       if response.is_a? Net::HTTPResponse
         unless response.is_a? Net::HTTPSuccess
-          raise RightSignature::ResponseError.new(response)
+          raise RightSignature2013::ResponseError.new(response)
         end
 
         MultiXml.parse(response.body)
       else
         unless response.success?
-          raise RightSignature::ResponseError.new(response)
+          raise RightSignature2013::ResponseError.new(response)
         end
         
         response.parsed_response

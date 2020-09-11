@@ -1,6 +1,6 @@
-module RightSignature
+module RightSignature2013
   module Document
-    include RightSignature::Helpers
+    include RightSignature2013::Helpers
 
     # Lists documents 
     #   * <b>options</b>: (optional) search filters
@@ -98,10 +98,10 @@ module RightSignature
     # * <b>subject</b>: subject of the document that'll appear in email
     # * <b>recipients</b>: Recipients of the document, should be an array of hashes with :name, :email, and :role ('cc' or 'signer'). 
     #   One of the recipients requires <b>:is_sender</b> (true/false) to reference the API User and won't need to supply :name and :email
-    #   Ex. CC to support@rightsignature.com, with sender and john@rightsignature.com as a signer
+    #   Ex. CC to support@RightSignature2013.com, with sender and john@RightSignature2013.com as a signer
     #     [
-    #       {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #       {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #       {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #       {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #       {'is_sender' => true, :role => 'signer'},
     #     ]
     # * <b>options</b>: other optional values
@@ -112,8 +112,8 @@ module RightSignature
     #     Ex. ['sent_from_api', {"user_id" => "32"}]
     #   - <b>callback_location</b>: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed. 
     #     Ex. "http://yoursite/callback"
-    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature parse. true or false.
-    #     More info: https://rightsignature.com/apidocs/text_tags
+    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature2013 parse. true or false.
+    #     More info: https://RightSignature2013.com/apidocs/text_tags
     def send_document_from_data(file_data, filename, subject, recipients, options={})
       send_document(subject, recipients, {:type => "base64", :filename => filename, :value => Base64::encode64(file_data)}, options)
     end
@@ -123,10 +123,10 @@ module RightSignature
     # * <b>subject</b>: subject of the document that'll appear in email
     # * <b>recipients</b>: Recipients of the document, should be an array of hashes with :name, :email, and :role ('cc' or 'signer'). 
     #   One of the recipients requires <b>:is_sender</b> (true/false) to reference the API User and won't need to supply :name and :email
-    #   Ex. CC to support@rightsignature.com, with sender and john@rightsignature.com as a signer
+    #   Ex. CC to support@RightSignature2013.com, with sender and john@RightSignature2013.com as a signer
     #     [
-    #       {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #       {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #       {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #       {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #       {'is_sender' => true, :role => 'signer'},
     #     ]
     # * <b>options</b>: other optional values
@@ -137,13 +137,13 @@ module RightSignature
     #       Ex. ['sent_from_api', {"user_id" => "32"}]
     #   - <b>callback_location</b>: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed. 
     #       Ex. "http://yoursite/callback"
-    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature parse. true or false.
-    #       More info: https://rightsignature.com/apidocs/text_tags
+    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature2013 parse. true or false.
+    #       More info: https://RightSignature2013.com/apidocs/text_tags
     # 
     # Example:
     #   recipients = [
-    #     {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #     {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #     {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #     {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #     {'is_sender' => true, :role => 'signer'}
     #   ]
     #   options={
@@ -164,10 +164,10 @@ module RightSignature
     # * <b>subject</b>: subject of the document that'll appear in email
     # * <b>recipients</b>: Recipients of the document, should be an array of hashes with :name, :email, and :role ('cc' or 'signer'). 
     #   One of the recipients requires <b>:is_sender</b> (true/false) to reference the API User and won't need to supply :name and :email
-    #   Ex. CC to support@rightsignature.com, with sender and john@rightsignature.com as a signer
+    #   Ex. CC to support@RightSignature2013.com, with sender and john@RightSignature2013.com as a signer
     #     [
-    #       {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #       {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #       {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #       {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #       {'is_sender' => true, :role => 'signer'},
     #     ]
     # * <b>options</b>: other optional values
@@ -178,13 +178,13 @@ module RightSignature
     #       Ex. ['sent_from_api', {"user_id" => "32"}]
     #   - <b>callback_location</b>: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed. 
     #       Ex. "http://yoursite/callback"
-    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature parse. true or false.
-    #       More info: https://rightsignature.com/apidocs/text_tags
+    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature2013 parse. true or false.
+    #       More info: https://RightSignature2013.com/apidocs/text_tags
     # 
     # Example:
     #   recipients = [
-    #     {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #     {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #     {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #     {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #     {'is_sender' => true, :role => 'signer'}
     #   ]
     #   options={
@@ -205,10 +205,10 @@ module RightSignature
     # * <b>subject</b>: subject of the document that'll appear in email
     # * <b>recipients</b>: Recipients of the document, should be an array of hashes with :name, :email, and :role ('cc' or 'signer'). 
     #   One of the recipients requires <b>:is_sender</b> (true/false) to reference the API User and won't need to supply :name and :email
-    #   Ex. CC to support@rightsignature.com, with sender and john@rightsignature.com as a signer
+    #   Ex. CC to support@RightSignature2013.com, with sender and john@RightSignature2013.com as a signer
     #     [
-    #       {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #       {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #       {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #       {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #       {'is_sender' => true, :role => 'signer'},
     #     ]
     # * options: other optional values
@@ -219,12 +219,12 @@ module RightSignature
     #       Ex. ['sent_from_api', {"user_id" => "32"}]
     #   - <b>callback_location</b>: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed. 
     #       Ex. "http://yoursite/callback"
-    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature parse. true or false.
-    #       More info: https://rightsignature.com/apidocs/text_tags
+    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature2013 parse. true or false.
+    #       More info: https://RightSignature2013.com/apidocs/text_tags
     # Ex. 
     #   recipients = [
-    #     {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #     {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #     {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #     {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #     {'is_sender' => true, :role => 'signer'},
     #   ]
     #   document_data = {:type => 'base64', :filename => "originalfile.pdf", :value => Base64.encode64(File.read('myfile.pdf','r'))}
@@ -258,10 +258,10 @@ module RightSignature
     # * <b>subject</b>: subject of the document that'll appear in email
     # * <b>recipients</b>: Recipients of the document, should be an array of hashes with :name, :email, and :role ('cc' or 'signer'). 
     #   One of the recipients requires <b>:is_sender</b> (true/false) to reference the API User and won't need to supply :name and :email
-    #   Ex. CC to support@rightsignature.com, with sender and john@rightsignature.com as a signer
+    #   Ex. CC to support@RightSignature2013.com, with sender and john@RightSignature2013.com as a signer
     #     [
-    #       {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #       {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #       {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #       {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #       {'is_sender' => true, :role => 'signer'},
     #     ]
     # * <b>options</b>: other optional values
@@ -272,12 +272,12 @@ module RightSignature
     #     Ex. ['sent_from_api', {"user_id" => "32"}]
     #   - <b>callback_location</b>: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed. 
     #     Ex. "http://yoursite/callback"
-    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature parse. true or false.
-    #     More info: https://rightsignature.com/apidocs/text_tags
+    #   - <b>use_text_tags</b>: Document has special Text Tags that RightSignature2013 parse. true or false.
+    #     More info: https://RightSignature2013.com/apidocs/text_tags
     # Ex. 
     #   recipients = [
-    #     {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-    #     {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+    #     {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+    #     {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
     #     {'is_sender' => true, :role => 'signer'},
     #   ]
     #   document_data = {:type => 'base64', :filename => "originalfile.pdf", :value => Base64.encode64(File.read('myfile.pdf','r'))}
@@ -297,14 +297,14 @@ module RightSignature
       "#{site}/builder/new?rt=#{response['document']['redirect_token']}"
     end
     
-    # Generates signer links for a Document with signers with email of "noemail@rightsignature.com"
+    # Generates signer links for a Document with signers with email of "noemail@RightSignature2013.com"
     # * <b>guid</b>: Document GUID
     # * <b>redirect_location</b>: (Optional) URL to redirect each signer after it is completed
     # 
     # Ex. Generate signer links for document GUID123 that redirects users to http://mysite/done_signing after signing
     #   @rs_connection.get_document_signer_links_for("GUID123", "http://mysite/done_signing")
     # 
-    # Note that ONLY recipients with an email of "noemail@rightsignature.com" will have a signer link
+    # Note that ONLY recipients with an email of "noemail@RightSignature2013.com" will have a signer link
     def get_document_signer_links_for(guid, redirect_location = nil)
       params = {}
       params[:redirect_location] = URI.encode(redirect_location) if redirect_location

@@ -1,4 +1,4 @@
-module RightSignature::Helpers #:nodoc:
+module RightSignature2013::Helpers #:nodoc:
   module TagsHelper #:nodoc: 
     class <<self #:nodoc: 
       def mixed_array_to_string_array(array_of_tags)

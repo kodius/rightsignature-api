@@ -1,4 +1,4 @@
-module RightSignature
+module RightSignature2013
   module Account 
     # Return account information about API user
     # 

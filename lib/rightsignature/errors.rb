@@ -1,8 +1,8 @@
-module RightSignature
+module RightSignature2013
   class ResponseError < Exception
     attr_reader :response
 
-    # Creates new instance of RightSignature::ResponseError to make API calls
+    # Creates new instance of RightSignature2013::ResponseError to make API calls
     # * <b>response</b>: Net::HTTP response or HTTParty response
     # * <b>message</b>: (Optional) Custom error message
     #     

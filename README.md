@@ -1,28 +1,28 @@
-RightSignature API
+RightSignature2013 API
 ==================
-This gem is a wrapper to RightSignature's API for both OAuth authentication and Token authentication
+This gem is a wrapper to RightSignature2013's API for both OAuth authentication and Token authentication
 
 #####Install
 ```
-gem install rightsignature
+gem install RightSignature2013
 ```
 or in your Gemfile
 ```
-gem 'rightsignature', '~> 1.0.0'
+gem 'RightSignature2013', '~> 1.0.0'
 ```
 
 Setup
 -----
-After getting an API key from RightSignature, you can use the Secure Token or generate an Access Token with the OAuth key and secret using RightSignature::Connection.new. Below are examples on how to use the gem as yourself.
+After getting an API key from RightSignature2013, you can use the Secure Token or generate an Access Token with the OAuth key and secret using RightSignature2013::Connection.new. Below are examples on how to use the gem as yourself.
 
 #####Using Token authentication
 ```
-@rs_connection = RightSignature::Connection.new(:api_token => YOUR_TOKEN)
+@rs_connection = RightSignature2013::Connection.new(:api_token => YOUR_TOKEN)
 ```
 
 #####Using OAuth authentication
 ```
-@rs_connection = RightSignature::Connection.new(
+@rs_connection = RightSignature2013::Connection.new(
   :consumer_key => "Consumer123",
   :consumer_secret => "Secret098",
   :access_token => "AccessToken098",
@@ -32,7 +32,7 @@ After getting an API key from RightSignature, you can use the Secure Token or ge
 Note: if the both OAuth credentials and api_token are set, the default action is to use Token Authentication.
 
 #####Getting Access Token
-Make sure you have a server that is can recieve the parameters from RightSignature and the callback is setup correctly in the RightSignature API settings (https://rightsignature.com/oauth_clients).
+Make sure you have a server that is can recieve the parameters from RightSignature2013 and the callback is setup correctly in the RightSignature2013 API settings (https://RightSignature2013.com/oauth_clients).
 ```
 request_token = @rs_connection.oauth_connection.new_request_token
 ```
@@ -44,7 +44,7 @@ Now Visit the url generated from
 ```
 and log into the site.
 
-After approving the application, you will be redirected to the callback url that is in the RightSignature API settings (https://rightsignature.com/oauth_clients). The OAuth verifier should be in the params "oauth_verifier". Put the verifier in:
+After approving the application, you will be redirected to the callback url that is in the RightSignature2013 API settings (https://RightSignature2013.com/oauth_clients). The OAuth verifier should be in the params "oauth_verifier". Put the verifier in:
 ```
 @rs_oauth = @rs_connection.oauth_connection
 @rs_oauth.generate_access_token(params[:oauth_verifer])
@@ -67,7 +67,7 @@ If you need to set the Request Token for the OAuth Consumer:
 @rs_oauth.set_request_token(token, secret)
 ```
 
-After loading the configuration, you can use wrappers in RightSignature::Connection to call the API, or use RightSignature::Connection for more custom calls.
+After loading the configuration, you can use wrappers in RightSignature2013::Connection to call the API, or use RightSignature2013::Connection for more custom calls.
 
 Documents
 ---------
@@ -143,8 +143,8 @@ tags=['sent_from_api', {'user_id' => '12345'}]
 From file:
 ```
 recipients = [
-  {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-  {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+  {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+  {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
   {'is_sender' => true, :role => 'signer'}
 ]
 options={
@@ -173,13 +173,13 @@ Or
     * callback_location: A URI encoded URL that specifies the location for API to POST a callback notification to when the document has been created and signed.
         Ex. "http://yoursite/callback"
     * use_text_tags: Parse document for special Text Tags. true or false.
-        More info: https://rightsignature.com/apidocs/text_tags
+        More info: https://RightSignature2013.com/apidocs/text_tags
 
 From raw data:
 ```
 recipients = [
-  {:name => "RightSignature", :email => "support@rightsignature.com", :role => 'cc'},
-  {:name => "John Bellingham", :email => "john@rightsignature.com", :role => 'signer'},
+  {:name => "RightSignature2013", :email => "support@RightSignature2013.com", :role => 'cc'},
+  {:name => "John Bellingham", :email => "john@RightSignature2013.com", :role => 'signer'},
   {'is_sender' => true, :role => 'signer'}
 ]
 raw_data = File.read("here/is/myfile.pdf")
@@ -188,8 +188,8 @@ filename = "Desired Filename.pdf"
 ```
 
 #####Embedded Signing Links
-Generates URLs for the embedded signing page for documents with recipients with email of 'noemail@rightsignature.com'.
-Returns an array of {:name => "John Bellingham", "url" => "https://rightsignature.com/signatures/embedded?rt=1234"}
+Generates URLs for the embedded signing page for documents with recipients with email of 'noemail@RightSignature2013.com'.
+Returns an array of {:name => "John Bellingham", "url" => "https://RightSignature2013.com/signatures/embedded?rt=1234"}
 ```
 @rs_connection.get_document_signer_links_for(guid, redirect_location=nil)
 ```
@@ -315,8 +315,8 @@ options = {
 ```
 
 #####Embedded Signing Links for Sent Template
-Prepackages a template, and sends it out with each recipients marked as a embedded signer (email as noemail@rightsignature.com), then generates embedded signing URLs.
-Returns an array of {:name => "John Bellingham", "url" => "https://rightsignature.com/signatures/embedded?rt=1234"}
+Prepackages a template, and sends it out with each recipients marked as a embedded signer (email as noemail@RightSignature2013.com), then generates embedded signing URLs.
+Returns an array of {:name => "John Bellingham", "url" => "https://RightSignature2013.com/signatures/embedded?rt=1234"}
 ```
 @rs_connection.send_as_embedded_signers(guid, recipients, options={})
 ```
@@ -394,16 +394,16 @@ Returns number of documents sent. Can scope to week, month, or day and count onl
 * since: Only count documents sent withing the 'week', 'month', or 'day'.
 * signed: Only count signed documents if 'true', else all documents
 
-Custom API calls using RightSignature::Connection
+Custom API calls using RightSignature2013::Connection
 -------------------------------------------------
 
-In case there are new API paths, RightSignature::Connection allows a specific path to be specified.
-#####Ex. GET https://rightsignature.com/api/documents.xml
+In case there are new API paths, RightSignature2013::Connection allows a specific path to be specified.
+#####Ex. GET https://RightSignature2013.com/api/documents.xml
 ```
 @rs_connection.get('/api/documents.xml', {:my => 'params'}, {'custom_header' => 'headerValue'})
 ```
 
-#####Ex. POST https://rightsignature.com/api/documents.xml
+#####Ex. POST https://RightSignature2013.com/api/documents.xml
 ```
 request_hash= {
   :document => {
@@ -416,12 +416,12 @@ request_hash= {
 
 Getting API Error Messages
 --------------------------
-If a request does not return a success response (200), a RightSignature::ResponseError is raised. You can rescue the error and inspect the response object or call detailed_message. detailed_message only returns if the response from the server contains an error message in the XML.
+If a request does not return a success response (200), a RightSignature2013::ResponseError is raised. You can rescue the error and inspect the response object or call detailed_message. detailed_message only returns if the response from the server contains an error message in the XML.
 #####Ex. Trying to parse the error message response from API
 ```
 begin
   @rs_connection.post('/api/documents.xml', {:bad => 'params'})
-rescue RightSignature::ResponseError => error
+rescue RightSignature2013::ResponseError => error
   puts error.detailed_message
 end
 ```
@@ -430,7 +430,7 @@ end
 ```
 begin
   @rs_connection.post('/api/documents.xml', {:bad => 'params'})
-rescue RightSignature::ResponseError => error
+rescue RightSignature2013::ResponseError => error
   puts error.response.inspect
 end
 ```
@@ -439,5 +439,5 @@ Development Notes
 -----------------
 To load in irb from project root:
 ```
-$:.push File.expand_path("../lib", __FILE__); require "rightsignature"; RightSignature::Connection.new(MY_KEYS)
+$:.push File.expand_path("../lib", __FILE__); require "RightSignature2013"; RightSignature2013::Connection.new(MY_KEYS)
 ```

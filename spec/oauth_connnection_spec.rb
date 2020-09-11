@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe RightSignature::OauthConnection do
+describe RightSignature2013::OauthConnection do
   before do
     @consumer_mock = mock(OAuth::Consumer)
     @access_token_mock = mock(OAuth::AccessToken, :token => "token", :secret => "secret")
@@ -13,17 +13,17 @@ describe RightSignature::OauthConnection do
     end
     
     it "should raise error if no configuration is set" do
-      @oauth_connection = RightSignature::OauthConnection.new()
+      @oauth_connection = RightSignature2013::OauthConnection.new()
       lambda{@oauth_connection.oauth_consumer}.should raise_error(Exception, "Please set consumer_key, consumer_secret, access_token, access_secret")
     end
     
     it "should return consumer if consumer_key and consumer_secret is set" do
-      @oauth_connection = RightSignature::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098")
+      @oauth_connection = RightSignature2013::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098")
       OAuth::Consumer.should_receive(:new).with(
         "Consumer123",
         "Secret098",
         {
-         :site              => "https://rightsignature.com",
+         :site              => "https://RightSignature2013.com",
          :scheme            => :header,
          :http_method        => :post,
          :authorize_path    =>'/oauth/authorize', 
@@ -36,17 +36,17 @@ describe RightSignature::OauthConnection do
 
   describe "access_token" do
     it "should raise error if access_token is not set" do
-      oauth_connection = RightSignature::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_secret => "Secret098")
+      oauth_connection = RightSignature2013::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_secret => "Secret098")
       lambda{oauth_connection.access_token}.should raise_error(Exception, "Please set consumer_key, consumer_secret, access_token, access_secret")
     end
 
     it "should raise error if access_secret is not set" do
-      oauth_connection = RightSignature::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098")
+      oauth_connection = RightSignature2013::OauthConnection.new(:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098")
       lambda{oauth_connection.access_token}.should raise_error(Exception, "Please set consumer_key, consumer_secret, access_token, access_secret")
     end
     
     it "should create OAuth access token with credentials" do
-      oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
+      oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
       OAuth::Consumer.should_receive(:new).and_return(@consumer_mock)
       OAuth::AccessToken.should_receive(:new).with(@consumer_mock, 'AccessToken098', 'AccessSecret123')
 
@@ -58,7 +58,7 @@ describe RightSignature::OauthConnection do
         OAuth::Consumer.stub(:new).and_return(@consumer_mock)
         OAuth::AccessToken.should_receive(:new).with(@consumer_mock, "newAToken", "newASecret").and_return(@access_token_mock)
 
-        oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
+        oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
         oauth_connection.set_access_token("newAToken","newASecret")
         oauth_connection.access_token.should == @access_token_mock
       end
@@ -71,7 +71,7 @@ describe RightSignature::OauthConnection do
       OAuth::Consumer.stub(:new).and_return(@consumer_mock)
       @consumer_mock.should_receive(:get_request_token).and_return(request_mock)
 
-      oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
+      oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
       oauth_connection.new_request_token
       oauth_connection.request_token.should == request_mock
     end
@@ -81,7 +81,7 @@ describe RightSignature::OauthConnection do
       OAuth::Consumer.stub(:new).and_return(@consumer_mock)
       @consumer_mock.should_receive(:get_request_token).with({:oauth_callback => "http://example.com/callback"}).and_return(request_mock)
 
-      oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
+      oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098", :access_token => "AccessToken098", :access_secret => "AccessSecret123"})
       oauth_connection.new_request_token({:oauth_callback => "http://example.com/callback"})
       oauth_connection.request_token.should == request_mock
     end
@@ -89,7 +89,7 @@ describe RightSignature::OauthConnection do
 
   describe "set_request_token" do
     it "should create RequestToken with given token and secret" do
-      oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
+      oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
       oauth_connection.set_request_token('request1', 'secret2')
       oauth_connection.request_token.token.should == 'request1'
       oauth_connection.request_token.secret.should == 'secret2'
@@ -98,7 +98,7 @@ describe RightSignature::OauthConnection do
 
   describe "generate_access_token" do
     before do
-      @oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
+      @oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
     end
     
     it "should raise error if there is no request_token" do
@@ -119,11 +119,11 @@ describe RightSignature::OauthConnection do
 
   describe "request" do
     before do
-      @oauth_connection = RightSignature::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
+      @oauth_connection = RightSignature2013::OauthConnection.new({:consumer_key => "Consumer123", :consumer_secret => "Secret098"})
     end
     
     it "should raise error if no configuration is set" do
-      oauth_connection = RightSignature::OauthConnection.new()
+      oauth_connection = RightSignature2013::OauthConnection.new()
       lambda{oauth_connection.request(:get, "path", {"User-Agent" => 'My own'})}.should raise_error(Exception, "Please set consumer_key, consumer_secret, access_token, access_secret")
     end
     

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe RightSignature::Document do
+describe RightSignature2013::Document do
   describe "documents_list" do
     it "should GET /documents.xml" do
       @rs.should_receive(:get).with('/api/documents.xml', {})
@@ -241,7 +241,7 @@ describe RightSignature::Document do
   end
   
   describe "generate_document_url" do
-    it "should POST /api/documents.xml with redirect action and return https://rightsignature.com/builder/new?rt=REDIRECT_TOKEN" do
+    it "should POST /api/documents.xml with redirect action and return https://RightSignature2013.com/builder/new?rt=REDIRECT_TOKEN" do
       @rs.should_receive(:post).with("/api/documents.xml", {
         :document => {
           :subject => "subjy",

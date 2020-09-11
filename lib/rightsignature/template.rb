@@ -1,6 +1,6 @@
-module RightSignature
+module RightSignature2013
   module Template
-    include RightSignature::Helpers
+    include RightSignature2013::Helpers
     # List Templates with optional filters
     # * <b>Options</b>: (optional) Hash of filters to use
     #   * <b>page</b>: page number
@@ -226,7 +226,7 @@ module RightSignature
     #       is equivalent to 
     #         <role role_name="Employee">
     #           <name>John Employee</name>
-    #           <email>noemail@rightsignature.com</email>
+    #           <email>noemail@RightSignature2013.com</email>
     #         </role>
     # * <b>options</b>: other optional values
     #   * <b>subject</b>: subject of the document that'll appear in email. Defaults to Template's subject
@@ -271,7 +271,7 @@ module RightSignature
 
       recipients.each do |role_hash|
         key, value = role_hash.first
-        role_hash[key][:email] = "noemail@rightsignature.com" unless role_hash[key]["email"] || role_hash[key][:email]
+        role_hash[key][:email] = "noemail@RightSignature2013.com" unless role_hash[key]["email"] || role_hash[key][:email]
       end
       
       response = send_template(template["guid"], options[:subject] || template["subject"], recipients, options)

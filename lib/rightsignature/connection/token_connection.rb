@@ -1,16 +1,16 @@
-module RightSignature
+module RightSignature2013
   class TokenConnection
     include HTTParty
-    base_uri 'https://rightsignature.com'
+    base_uri 'https://RightSignature2013.com'
     format :xml
     
     attr_reader :api_token
 
-    # Creates new instance of RightSignature::TokenConnection to make API calls
+    # Creates new instance of RightSignature2013::TokenConnection to make API calls
     # * <b>api_token</b>: API Token. 
     #     
     # Example:
-    #   @rs_token = RightSignature::TokenConnection.new("APITOKEN")
+    #   @rs_token = RightSignature2013::TokenConnection.new("APITOKEN")
     # 
     def initialize(api_token)
       @api_token = api_token

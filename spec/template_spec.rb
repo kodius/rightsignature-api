@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe RightSignature::Template do 
+describe RightSignature2013::Template do 
   describe "templates_list" do
     it "should GET /api/templates.xml" do
       @rs.should_receive(:get).with('/api/templates.xml', {})
@@ -212,7 +212,7 @@ describe RightSignature::Template do
       @rs.generate_build_url
     end
 
-    it "should return https://rightsignature.com/builder/new?rt=REDIRECT_TOKEN" do
+    it "should return https://RightSignature2013.com/builder/new?rt=REDIRECT_TOKEN" do
       @rs.should_receive(:post).with("/api/templates/generate_build_token.xml", {:template => {}}).and_return({"token"=>{"redirect_token" => "REDIRECT_TOKEN"}})
       @rs.generate_build_url.should == "#{@rs.site}/builder/new?rt=REDIRECT_TOKEN"
     end
@@ -324,7 +324,7 @@ describe RightSignature::Template do
              "original_template_filename"=>"demo_document.pdf"}
           },
         "thumbnail_url"=>
-        "https%3A%2F%2Fs3.amazonaws.com%3A443%2Frightsignature.com%2Fassets%2F1464%2Fabcde_p1_t.png%3FSignature%3D1234AC",
+        "https%3A%2F%2Fs3.amazonaws.com%3A443%2FRightSignature2013.com%2Fassets%2F1464%2Fabcde_p1_t.png%3FSignature%3D1234AC",
         "redirect_token"=>
         "123456bcde"
       }}
@@ -336,7 +336,7 @@ describe RightSignature::Template do
       
     end
     
-    it "should prepackage template, send template with reciepents with noemail@rightsignature.com and return self-signer links" do
+    it "should prepackage template, send template with reciepents with noemail@RightSignature2013.com and return self-signer links" do
       @rs.should_receive(:post).with('/api/templates/TGUID/prepackage.xml', 
         {}
       ).and_return(@prepackage_response)
@@ -345,8 +345,8 @@ describe RightSignature::Template do
           :action => "send", 
           :subject => "subject template",
           :roles => [
-            {:role => {:name => "John Bellingham", :email => "noemail@rightsignature.com", "@role_name" => "Leasee"}},
-            {:role => {:name => "Tim Else", :email => "noemail@rightsignature.com", "@role_name" => "Leaser"}}
+            {:role => {:name => "John Bellingham", :email => "noemail@RightSignature2013.com", "@role_name" => "Leasee"}},
+            {:role => {:name => "Tim Else", :email => "noemail@RightSignature2013.com", "@role_name" => "Leaser"}}
           ]
         }}).and_return(@sent_document_response)
       @rs.should_receive(:get).with("/api/documents/ABCDEFGH123/signer_links.xml", {}).and_return({"document" => {
@@ -376,7 +376,7 @@ describe RightSignature::Template do
           :subject => "subject template",
           :roles => [
             {:role => {:name => "John Bellingham", :email => "dontchange@example.com", "@role_name" => "Leasee"}},
-            {:role => {:name => "Tim Else", :email => "noemail@rightsignature.com", "@role_name" => "Leaser"}}
+            {:role => {:name => "Tim Else", :email => "noemail@RightSignature2013.com", "@role_name" => "Leaser"}}
           ]
         }}).and_return(@sent_document_response)
       @rs.should_receive(:get).with("/api/documents/ABCDEFGH123/signer_links.xml", {}).and_return({"document" => {

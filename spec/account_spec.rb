@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe RightSignature::Account do
+describe RightSignature2013::Account do
   describe "user_details" do
     it "should GET /api/users/user_details.xml" do
       @rs.should_receive(:get).with('/api/users/user_details.xml')

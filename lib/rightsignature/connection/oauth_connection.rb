@@ -1,9 +1,9 @@
-module RightSignature
+module RightSignature2013
   class OauthConnection
     attr_reader :request_token
     attr_reader :consumer_key, :consumer_secret, :oauth_access_token, :oauth_access_secret
 
-    # Creates new instance of RightSignature::OauthConnection to make API calls
+    # Creates new instance of RightSignature2013::OauthConnection to make API calls
     # * <b>creds</b>: Hash of credentials for OAuth. 
     #   * Hash keys for OAuth:
     #     * :consumer_key
@@ -12,7 +12,7 @@ module RightSignature
     #     * :access_secret
     #     
     # Example:
-    #   @rs_oauth = RightSignature::OauthConnection.new(:consumer_key => "ckey", :consumer_secret => "csecret", :access_token => "atoken", :access_secret => "asecret")
+    #   @rs_oauth = RightSignature2013::OauthConnection.new(:consumer_key => "ckey", :consumer_secret => "csecret", :access_token => "atoken", :access_secret => "asecret")
     # 
     def initialize(credentials={})
       @consumer_key = credentials[:consumer_key]
@@ -28,7 +28,7 @@ module RightSignature
         @consumer_key,
         @consumer_secret,
         {
-         :site              => "https://rightsignature.com",
+         :site              => "https://RightSignature2013.com",
          :scheme            => :header,
          :http_method        => :post,
          :authorize_path    =>'/oauth/authorize', 
@@ -94,7 +94,7 @@ module RightSignature
   private
     # Raises exception if OAuth credentials are not set.
     def check_credentials
-      raise "Please set #{RightSignature::Connection.oauth_keys.join(', ')}" unless has_oauth_credentials?
+      raise "Please set #{RightSignature2013::Connection.oauth_keys.join(', ')}" unless has_oauth_credentials?
     end
 
     # Checks if OAuth credentials are set.

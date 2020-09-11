@@ -3,12 +3,9 @@ RightSignature2013 API
 This gem is a wrapper to RightSignature2013's API for both OAuth authentication and Token authentication
 
 #####Install
+in your Gemfile
 ```
-gem install RightSignature2013
-```
-or in your Gemfile
-```
-gem 'RightSignature2013', '~> 1.0.0'
+gem 'rightsignature2013', git: 'https://github.com/kodius/rightsignature-api.git'
 ```
 
 Setup
